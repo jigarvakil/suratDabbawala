@@ -1,0 +1,9 @@
+tbl_deliveryhistory
+histid
+aid
+d_date
+status()
+
+insert into tbl_deliveryhistory(aid) select aid from tbl_allocation
+
+repair table event
