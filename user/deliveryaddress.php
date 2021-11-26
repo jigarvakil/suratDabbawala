@@ -59,6 +59,7 @@
 			$sql1="select * from tbl_route where userid=$uid";
 			$res=mysqli_query($con,$sql1);
 			$num=mysqli_num_rows($res);
+			$addrData = mysqli_fetch_assoc($res);
 			if($num>0)
 			{
 				$count++;
@@ -172,7 +173,21 @@
 					<div class="col-lg-12">
 						<div class="contact-message-wrapper">
 							<h4 class="contact-title mb-25">Delivery Address</h4>
-							Your Pick-up and Delivery Addresses are already inserted if you want to update please <a href="udeliveryaddress.php">  CLICK HERE </a>
+							Your Pick-up and Delivery Addresses are already inserted if you want to update please <a class="text-danger" href="udeliveryaddress.php">  CLICK HERE </a>
+							<br/>
+							<strong>
+							<br/>
+								Your Source Address: <?= $addrData['sourceaddr'] ?> 🏠 
+							<br/>
+								Your Destination Address: <?= $addrData['destinationaddr'] ?> 📍 🏢 
+							<br/>
+								Total KM: <?= $addrData['km'] ?> 
+							</strong>
+							<!-- <?php 
+								echo '<pre>'.
+								print_r($addrData)
+								.'</pre>';
+							?> -->
 						</div>
 					</div>
 					
