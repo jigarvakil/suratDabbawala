@@ -11,7 +11,7 @@
                         </div>
                     </div>
                     <?php include_once ("navigation.php")?>
-					<div class="search-wrap">
+					<!-- <div class="search-wrap">
                                 <button class="search-toggle">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                    
                 </div>
             </div>

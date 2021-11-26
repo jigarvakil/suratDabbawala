@@ -15,7 +15,7 @@
         $query="INSERT INTO `tbl_complaint` (`compid`, `ctype`, `date`, `title`, `description`, `userid`, `oid`, `status`) VALUES (NULL, '$ctype', '$date', '$title', '$description', '$user', '$oid', '0')";
         // echo $query;
         // exit;
-        $res=mysqli_query($con,$query);
+      //  $res=mysqli_query($con,$query);
 		if(mysqli_query($con,$query)){
 			echo "<script type='text/javascript'>alert('Compalaint register success');</script>";
 		}
