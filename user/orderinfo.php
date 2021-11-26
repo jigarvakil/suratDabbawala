@@ -54,7 +54,7 @@
 							    <th>order date</th>
 							    <th>Thali Name</th>
 							    <th>Description</th>
-								
+							    <th>Amount</th>
 								<th>status</th>
 							   </tr>
 						   </thead>
@@ -69,25 +69,28 @@
                         where userid=$user";
                         
                         $result=mysqli_query($con,$sql);
-                        $row=mysqli_fetch_assoc($result);
-                        echo '<pre>';
-                        print_r( $row);
-                        echo '</pre>';
+                        // $row=mysqli_fetch_assoc($result);
+                        // echo '<pre>';
+                        // print_r( $row);
+                        // echo '</pre>';
 						while($row=mysqli_fetch_assoc($result))
 						{
 							
 						?>
 								<tr>
-                                <td><?php echo $i++; ?></td>
-								<td><?php echo $row['d_date']; ?></td>
+                                <td><?php echo $row['oid']; ?></td>
+								<td><?php echo $row['odate']; ?></td>
+								<td><?php echo $row['thaliname']; ?></td>
+								<td><?php echo $row['description']; ?></td>
+								<td><?php echo $row['price']; ?></td>
 								<td>
 								    <?php 
 										if($row['status']==0)
-										    echo "Not Deliverd";
+										    echo "<span class='badge badge-pill badge-warning'>Pending Delivery</span>";
 										elseif($row['status']==1)
-											echo "Deliverd success";
+											echo "<span class='badge badge-pill badge-success'>Delivered success</span>";
 										else 
-											echo "Order cancled/deliver not success"; 
+											echo "<span class='badge badge-pill badge-danger'>Order cancled/delivery failed</span>"; 
 										?>
 								</td>									
                                 </tr>

@@ -9,7 +9,7 @@
                                         <li class=" top-hover"><a href="">Restaurant<i class="ion-chevron-down"></i></a>
                                         <ul class="submenu">
                                                 <li><a href="order.php">Order from Restaurant</a></li>
-                                                <li class="top-hover"><a href="">Your Orders</a>
+                                                <li class="top-hover"><a href="orderinfo.php">Your Orders</a>
                                             </ul>
                                         </li>
                                        
@@ -40,7 +40,8 @@
                                             <ul class="submenu">
                                                 <li><a href="dabbawalainfo.php">Dabbawala Info</a></li>
                                                 <li><a href="pkginfo.php">Package Info</a></li>
-                                                <li><a href="deliveryhistory.php">Deliver History </a></li> 
+                                                <li><a href="deliveryhistory
+.php">Deliver History </a></li> 
                                             </ul>
                                         </li>
 
