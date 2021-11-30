@@ -43,7 +43,11 @@
 		$res=mysqli_query($con,$query);
 		if($res)
 		{
+			$_SESSION['userid']=mysqli_insert_id($con);
+			$_SESSION['email']=$email;
+
 			echo "<script type='text/javascript'>alert('insert success');</script>";
+			header("location:user.php?&email=".$email1);
 		}
 		else
 		{

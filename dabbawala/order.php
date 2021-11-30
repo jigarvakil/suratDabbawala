@@ -2,7 +2,15 @@
 	
 	include_once('connection.php');
 	include_once("check_session.php");
-	
+	if(isset($_REQUEST['btnAddOrder'])){
+		$allocationid = $_REQUEST['slctOrder'];
+		$tdate = date('Y-m-d');
+		$sql = "INSERT INTO `tbl_deliveryhistory` (`histid`, `aid`, `d_date`, `status`) VALUES (NULL, '$allocationid', '$tdate', '0') ";
+		$resOrder = mysqli_query($con,$sql);
+		if($resOrder){
+			header("location:order.php");
+		}
+	}
 	
 ?>
 <!DOCTYPE html>
@@ -29,7 +37,70 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h3 class="header-title mb-4">Todays Order</h3>
+										<!-- Button trigger modal -->
+										<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+										  + Add New
+										</button>
 										
+										<!-- Modal -->
+										<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+											<div class="modal-dialog" role="document">
+												<form>
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title">Add Today's Dabba Oder</h5>
+																<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																</button>
+															</div>
+														<div class="modal-body">
+															<div class="container-fluid">
+																<div class="row">
+																	<div class="col-md-2">
+																		
+																	</div>
+																	<div class="col-md-8">
+																		<div class="form-group">
+																			<label for="slctOrder">Deliver To</label>
+																			<select class="form-control" name="slctOrder">
+																				<option value='0'>--Select--</option>
+																				<?php
+																					$dbuser1=$_SESSION['dbuserid'];
+																					$sql1 = "select u.firstname,u.lastname,r.destinationaddr,a.aid FROM tbl_allocation as a join tbl_route as r on r.userid=a.dabbaid join tbl_user as u on u.userid=r.userid where dbuserid=$dbuser1; ";
+																					$tday1=date('Y-m-d');
+																					$res1=mysqli_query($con,$sql1);
+																					while($row1=mysqli_fetch_assoc($res1))
+																					{
+																				?>
+																					<option value="<?= $row1['aid'] ?>"><?= $row1['firstname']." ".$row1['lastname']."(".$row1['destinationaddr'].")" ?></option>
+																					
+																				<?php
+																					}
+																				?>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="col-md-2"></div>
+																</div>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+															<button type="submit" name="btnAddOrder" class="btn btn-primary">Save</button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+										
+										<script>
+											$('#exampleModal').on('show.bs.modal', event => {
+												var button = $(event.relatedTarget);
+												var modal = $(this);
+												// Use above variables to manipulate the DOM
+												
+											});
+										</script>
 										<table class="table table-hover">
 											<thead>
 												<tr>
@@ -55,8 +126,8 @@
 													join tbl_user as u 
 													on u.userid=r.userid
 													where d_date='$tday' and dbuserid=$dbuser";
-													// echo $sql;
-													// exit;
+													//echo $sql;
+													//exit;
 													$res=mysqli_query($con,$sql);
 													while($row=mysqli_fetch_assoc($res))
 													{
@@ -113,7 +184,7 @@
 												?>
 											</tbody>
 										</table>
-										
+										<strong class="text-danger">Contact administration for cancel or delete any order</strong>
                                     </div>
                                 </div>
                             </div>
